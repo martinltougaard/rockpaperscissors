@@ -69,7 +69,7 @@ function rpsFunction() {
     if (roundCount === 5) {
         if (playerPoints > computerPoints) {
             document.getElementById('runningScore').innerHTML = "You win the match. The score was " + playerPoints + " to " + computerPoints;
-        } else if (playerPoints > computerPoints) {
+        } else if (playerPoints < computerPoints) {
             document.getElementById('runningScore').innerHTML = "You lose the match. The score was " + playerPoints + " to " + computerPoints;
         } else if (playerPoints === computerPoints) {
             document.getElementById('runningScore').innerHTML = "The match was a Tie. The score was " + playerPoints + " to " + computerPoints;
