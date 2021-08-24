@@ -5,7 +5,7 @@ var playerSelection = "";
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener('click', () => rpsFunction(button.id));
+    button.addEventListener('click', rpsFunction);
 });
 
 function randomInt(max) {
@@ -16,50 +16,50 @@ function computerPlay() {
     var r = randomInt(3);
     switch (r) {
         case 0:
-            return "rock";
+            return "Rock";
             break;
         case 1: 
-            return "paper";
+            return "Paper";
             break;
         case 2: 
-            return "scissors"
+            return "Scissors"
             break;        
     }
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
     switch (playerSelection) {
-        case "rock": 
-            if (computerSelection === "rock") {return 0;}
-            else if (computerSelection === "paper") {return -1;}
-            else if (computerSelection === "scissors") {return 1;}
+        case "Rock": 
+            if (computerSelection === "Rock") {return 0;}
+            else if (computerSelection === "Paper") {return -1;}
+            else if (computerSelection === "Scissors") {return 1;}
             break;
-        case "paper": 
-            if (computerSelection === "rock") {return 1;}
-            else if (computerSelection === "paper") {return 0;}
-            else if (computerSelection === "scissors") {return -1;}
+        case "Paper": 
+            if (computerSelection === "Rock") {return 1;}
+            else if (computerSelection === "Paper") {return 0;}
+            else if (computerSelection === "Scissors") {return -1;}
             break;
-        case "scissors": 
-            if (computerSelection === "rock") {return -1;}
-            else if (computerSelection === "paper") {return 1;}
-            else if (computerSelection === "scissors") {return 0;}
+        case "Scissors": 
+            if (computerSelection === "Rock") {return -1;}
+            else if (computerSelection === "Paper") {return 1;}
+            else if (computerSelection === "Scissors") {return 0;}
             break;
     }
 }
 
-function rpsFunction(id) {
-    playerSelection = id.toString();
+function rpsFunction() {
+    playerSelection = this.id;
     computerSelection = computerPlay();
+    document.getElementById('computerChose').innerHTML = "The computer chose " + computerSelection.toLowerCase(); 
     var result = playRound(playerSelection, computerSelection);
 
 
     if (result === 1) {
         ++playerPoints;
-        document.getElementById('roundResult').innerHTML = "You Win! " + playerSelection + " beat " + computerSelection;
+        document.getElementById('roundResult').innerHTML = "You Won! " + playerSelection + " beat " + computerSelection;
     } else if (result === -1) {
         ++computerPoints;
-        document.getElementById('roundResult').innerHTML = "You Lose! " + computerSelection + " beat " + playerSelection;
+        document.getElementById('roundResult').innerHTML = "You Lost! " + computerSelection + " beat " + playerSelection;
     } else if (result === 0) {
         document.getElementById('roundResult').innerHTML = "It's a tie! You both selected " + computerSelection;
     } 
