@@ -1,3 +1,13 @@
+var roundCount = 0;
+var playerPoints = 0;
+var computerPoints = 0;
+var playerSelection = "";
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => rpsFunction(button.id));
+});
+
 function randomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -38,34 +48,36 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(){
-    var playerPoints = 0;
-    var computerPoints = 0;
+function rpsFunction(id) {
+    playerSelection = id.toString();
+    computerSelection = computerPlay();
+    var result = playRound(playerSelection, computerSelection);
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Pick rock, paper or scissors");
-        const computerSelection = computerPlay();
-        const result = playRound(playerSelection, computerSelection);
-        if (result === 1){
-            console.log("You Win! " + playerSelection + " beats " + computerSelection);
-            ++playerPoints;
-        } else if (result === -1) {
-            console.log("You Lose! " + computerSelection + " beats " + playerSelection);
-            ++computerPoints;    
-        } else if (result === 0) {
-            console.log("It's a Tie");
-        }  
-    }
-    
 
-    if (playerPoints > computerPoints) {
-        console.log("You win the match. The score was " + playerPoints + " to " + computerPoints);
-    } else if (playerPoints > computerPoints) {
-        console.log("You lose the match. The score was " + playerPoints + " to " + computerPoints);
-    } else if (playerPoints === computerPoints) {
-        console.log("The match was a Tie. The score was " + playerPoints + " to " + computerPoints);
+    if (result === 1) {
+        ++playerPoints;
+        document.getElementById('roundResult').innerHTML = "You Win! " + playerSelection + " beat " + computerSelection;
+    } else if (result === -1) {
+        ++computerPoints;
+        document.getElementById('roundResult').innerHTML = "You Lose! " + computerSelection + " beat " + playerSelection;
+    } else if (result === 0) {
+        document.getElementById('roundResult').innerHTML = "It's a tie! You both selected " + computerSelection;
     } 
+    document.getElementById('runningScore').innerHTML = "The current score is " + playerPoints + " to " + computerPoints;
+
+    ++roundCount;
+    if (roundCount === 5) {
+        if (playerPoints > computerPoints) {
+            document.getElementById('runningScore').innerHTML = "You win the match. The score was " + playerPoints + " to " + computerPoints;
+        } else if (playerPoints > computerPoints) {
+            document.getElementById('runningScore').innerHTML = "You lose the match. The score was " + playerPoints + " to " + computerPoints;
+        } else if (playerPoints === computerPoints) {
+            document.getElementById('runningScore').innerHTML = "The match was a Tie. The score was " + playerPoints + " to " + computerPoints;
+        }
+        roundCount = 0;
+        playerPoints = 0;
+        computerPoints = 0;
+    }
 }
 
-game();
 

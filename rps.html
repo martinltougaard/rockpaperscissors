@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="A simple console Rock-Paper-Scissors game">
-        <title>Rock-Paper-Scissors</title>
-    </head>
-    <body>
-        Open the console with F12 to play Rock-Paper-Scissors!
-        <script src = "./rps.js"></script>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A simple Rock-Paper-Scissors game">
+    <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="main">
+        <div>
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+        <div id="computerChose"></div>
+        <div id="roundResult"></div>
+        <div id="runningScore"></div>
+    </div>
+    <script src="./rps.js"></script>
+</body>
+
 </html>

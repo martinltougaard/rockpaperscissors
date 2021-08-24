@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: azure; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+button {
+    background-color: blue;
+    color: azure;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: center;
+    text-align: center;
+    }
+
+#roundResult {
+    padding: 5px;
+}
